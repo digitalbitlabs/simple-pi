@@ -7,5 +7,5 @@ $handler = new \SimplePi\Exceptions\Handler();
 $handler->handleException();
 
 // Sample demo message to test response object and helper function
-echo response()->json(['message'=>'simple pi is a beautiful micro framework'],400);
+// echo response()->json(['message'=>'simple pi is a beautiful micro framework'],400);
 
