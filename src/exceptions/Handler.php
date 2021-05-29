@@ -1,24 +1,49 @@
 <?php declare(strict_types = 1);
+
+namespace SimplePi\Exceptions;
+
+use SimplePi\Http\HttpRequest;
+use Whoops\Run;
+use Whoops\Handler\PrettyPageHandler;
+
+use Exception;
+
 /**
  * Exception handler class
  */
-namespace SimplePi\Exceptions;
+class Handler {
 
-error_reporting(E_ALL);
+    protected $handler;
+    protected $env;
 
-$env = env('APP_ENVIRONMENT');
+    /**
+     * Initialize exception handler configuration
+     */
+    public function __construct() {
+        error_reporting(E_ALL);
+        $this->env = env('APP_ENVIRONMENT');
+        $this->handler = new Run();
+    }
 
-/**
- * Error handler registration
- */
-$handler = new \Whoops\Run;
-if($env !== 'production') {
-    $handler->pushHandler(new \Whoops\Handler\PrettyPageHandler);
-} else {
-    $handler->pushHandler(function($e) {
-        echo 'Something went wrong. Please check your email';
-    });
+    /**
+     * Exception handler configuration
+     */
+    public function handleException() {
+        if($this->env !== 'production') {
+            $this->handler->pushHandler(new PrettyPageHandler);
+        } else {
+            $this->handler->pushHandler(function($e) {
+                return response()->json(['message'=>'Something went wrong.'],400);
+            });
+        }        
+        $this->registerHandler();
+    }
+
+    /**
+     * Register handler object to throw errors
+     */
+    private function registerHandler() {
+        $this->handler->register();
+    }
+
 }
-$handler->register();
-
-throw new \Exception;
