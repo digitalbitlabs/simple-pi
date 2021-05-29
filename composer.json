@@ -1,0 +1,27 @@
+{
+    "name": "digitalbitlabs/simple-pi",
+    "description": "Simple Pi is REST API framework developed in PHP",
+    "keywords": ["REST API","Simple framework"],
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sanket Raut",
+            "email": "sanket@digitalbit.in",
+            "role": "Lead developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">7.0",
+        "filp/whoops": "~2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "SimplePi\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    }
+}

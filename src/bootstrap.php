@@ -1,4 +1,5 @@
-<?php
-declare(strict_types = 1);
+<?php declare(strict_types = 1);
 
-echo 'Bootstrap initialized';
+require __DIR__ ."/../vendor/autoload.php";
+
+require __DIR__ ."/exceptions/Handler.php";
