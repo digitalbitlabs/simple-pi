@@ -4,6 +4,7 @@ namespace SimplePi\Http;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+
 /**
  * Http Response class to handle response
  */

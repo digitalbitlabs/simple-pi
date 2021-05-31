@@ -17,4 +17,19 @@ class HttpRequest {
         $this->request = Request::createFromGlobals();
     }
 
+    /**
+     * helper function method()
+     */
+    public function method() {
+
+        return $this->request->getMethod();
+    }
+
+    /**
+     * helper function path()
+     */
+    public function path() {
+        return $this->request->getPathInfo();
+    }
+
 }
