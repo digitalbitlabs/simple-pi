@@ -1,12 +1,12 @@
 <?php declare(strict_types = 1);
+/**
+ * Http Request class to handle requests
+ */
 
 namespace SimplePi\Http;
 
 use Symfony\Component\HttpFoundation\Request;
 
-/**
- * Http Request class to handle requests
- */
 class HttpRequest {
 
     protected $request;
@@ -21,7 +21,6 @@ class HttpRequest {
      * helper function method()
      */
     public function method() {
-
         return $this->request->getMethod();
     }
 

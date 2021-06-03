@@ -1,16 +1,15 @@
 <?php declare(strict_types = 1);
+/**
+ * Exception handler class
+ */
 
 namespace SimplePi\Exceptions;
 
-use SimplePi\Http\HttpRequest;
 use Whoops\Run;
 use Whoops\Handler\PrettyPageHandler;
 
 use Exception;
 
-/**
- * Exception handler class
- */
 class Handler {
 
     protected $handler;

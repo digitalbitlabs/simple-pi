@@ -1,13 +1,13 @@
 <?php declare(strict_types = 1);
+/**
+ * Http Response class to handle response
+ */
 
 namespace SimplePi\Http;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-/**
- * Http Response class to handle response
- */
 class HttpResponse {
 
     protected $response;

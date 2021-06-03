@@ -1,35 +1,85 @@
 <?php declare(strict_types = 1);
-
-namespace SimplePi\Routing;
-
 /**
  * Router wrapper class
+ * @author - Sanket Raut <sanket@digitalbit.in>
  */
-use FastRoute;
-use FastRoute\RouteCollector;
+namespace SimplePi\Routing;
+
+use Klein\Klein;
 
 class Router {
-
-    protected $dispatcher;
-
     /**
-     * Initialize configuration
+     * Common variables
+     */
+    protected $router;
+    protected $class;
+    protected $method;
+    protected $routeFn;
+    /**
+     * Initialize configuration with Klein object
      */
     public function __construct() {
-        $this->dispatcher = simpleDispatcher();    
+        $this->__dispatchRouter();
     }
 
     /**
-     * Route Dispatcher function
+     * autoloader function after end of every other function
      */
-    public function dispatchRouting() {
-        return $this->dispatcher(function(RouteCollector $r) {
-            $r->addRoute('GET','/test', function() {
-                echo 'test';
-            });
-            $r->addRoute('GET','/', function() {
-                echo 'index';
-            });
-        });
+    public function __call($method,$arguments) {
+        if(method_exists($this, $method)) {
+            call_user_func_array(array($this,$method),$arguments);
+            $this->__dispatchRouter();
+        }
     }
+
+    /**
+     * Generate Klein object and dispatch router
+     */
+    private function __dispatchRouter() {
+        if(is_object($this->router)) {
+            $this->router->dispatch();
+            unset($this->router);
+        }
+        $this->router = new Klein;
+    }
+
+    /**
+     * Render the response based on the method and args
+     */
+    private function __renderResponse($method,$route,$routeFn) {
+        if(gettype($routeFn) == 'string') {
+            $this->routeFn = explode('@',$routeFn);
+            if(count($this->routeFn) > 1) {
+                $this->class = new $this->routeFn[0];
+                $this->method = $this->routeFn[1];
+                $this->router->respond($method,$route, function($request,$response) {
+                    return call_user_func_array([$this->class,$this->method],[$request,$response]);
+                });
+            }
+        } else {
+            $this->router->respond($method,$route,$routeFn);
+        }
+    }
+
+    /**
+     * GET routes
+     */
+    protected function get($route, $routeFn) {
+        $this->__renderResponse('GET',$route,$routeFn);
+    }
+
+    /**
+     * POST routes
+     */
+    protected function post($route, $routeFn) {
+        $this->__renderResponse('POST',$route,$routeFn);
+    }
+
+    /**
+     * PUT routes
+     */
+    protected function put($route, $routeFn) {
+        $this->__renderResponse('PUT',$route,$routeFn);
+    }
+
 }   
