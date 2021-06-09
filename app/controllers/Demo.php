@@ -6,11 +6,12 @@
 namespace App\Controllers;
 
 class Demo {
-    public function display($request,$response) {
+
+    public function display($request) {
         return response()->json(['data'=>$request->params()]);
     }
 
-    public function mySpace() {
-        echo 'this is my space';
+    public function mySpace($request) {
+        echo 'this is my space: '.$request->id;
     }
 }

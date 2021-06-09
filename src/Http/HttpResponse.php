@@ -25,6 +25,13 @@ class HttpResponse {
     }
 
     /**
+     * Get response status code
+     */
+    public function status(){
+        return $this->response->getStatusCode();   
+    }
+
+    /**
      * Response for plain text content
      */
     public function html($content,$statusCode = 200) {
