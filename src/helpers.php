@@ -11,6 +11,16 @@ if(!function_exists('env')) {
     }
 }
 /**
+ * Debug helper
+ */
+if(!function_exists('dd')) {
+    function dd($content) {        
+        header('Content-Type: application/json');
+        print_r($content);
+        exit();
+    }
+}
+/**
  * Request component helper
  */
 if(!function_exists('request')) {

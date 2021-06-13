@@ -8,5 +8,5 @@ $router->get('/', function() {
 $router->get('/testing', function() {
     return response()->json(['message'=>'Welcome to Simpe Pi test']);
 });
-$router->get('/myspace/[:id]', 'Demo@mySpace');
+$router->get('/myspace/{id}', 'Demo@mySpace');
 $router->post('/data', 'Demo@display');

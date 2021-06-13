@@ -5,19 +5,27 @@
  */
 namespace SimplePi\Routing;
 
-use Klein\Klein;
+use SimplePi\Dependencies;
+use SimplePi\Http\HttpResponse;
+use SimplePi\Http\HttpRequest;
+
+use FastRoute;
 
 class Router {
     /**
      * Common variables
      */
-    protected $errcodes = [];
-    protected $rescode = 0;
+    protected $request;
+    protected $response;
+    protected $collection = [];
+    protected $routecollection = [];
     protected $router;
     protected $class;
     protected $method;
-    protected $serverMethod;
-    protected $routeFn;
+    protected $payload;
+    protected $routecallback;
+    protected $routehandler;
+    protected $routevars;
     protected $namespace = '\\App\\Controllers\\';
     protected $statusTexts = [
         100 => 'Continue',
@@ -82,100 +90,120 @@ class Router {
         511 => 'Network Authentication Required',
     ];
 
-
-
     /**
-     * Initialize configuration with Klein object
+     * Initialize configuration with Fast Route
      */
-    public function __construct() {
-        $this->__dispatchRouter();
+    public function __construct(HttpRequest $request, HttpResponse $response, Dependencies $dependency) {
+        $this->request = $request;
+        $this->response = $response;
+        $this->dependency = $dependency;
     }
 
     /**
-     * autoloader function which executes after end of every other function
-     */
-    public function __call($method,$arguments) {
-        if(method_exists($this, $method)) {
-            call_user_func_array(array($this,$method),$arguments);
-            $this->__dispatchRouter();
-        }
-    }
-
-    /**
-     * Generate Klein object and dispatch router
+     * Generate Fast Route and dispatch router
      */
     private function __dispatchRouter() {
-        if(is_object($this->router)) {
-            $this->__httpErrorHandler();
-            $this->router->dispatch();
-            if(isset($this->errcodes[0]) && $this->rescode !== 200) {
-                return response()->json(['message'=>[$this->errcodes[0] .' '. $this->statusTexts[$this->errcodes[0]]]],$this->errcodes[0]);
-            } 
-            unset($this->router);
-        }
-        $this->router = new Klein;
+        $this->router = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $route) {
+            if(!empty($this->routecollection)) {
+                foreach($this->routecollection as $r) {
+                    $route->addRoute($r['method'],$r['route'],$r['callback']);
+                }           
+            }
+        });
+        // setup the collection to dispatch
+        $this->__setupDispatch();
     }
 
     /**
-     * request validation
+     * setup the collection to dispatch with error handler
      */
-    private function __httpErrorHandler() {
-        $this->router->onHttpError(function ($code,$router,$matched,$method_matched,$http_exception) {
-            if(array_key_exists($code,$this->statusTexts)) {
-                array_push($this->errcodes,$code);
-                if($code == 404) {
-                    array_shift($this->errcodes);
+    private function __setupDispatch() {
+        $this->payload = $this->router->dispatch($this->request->method(),$this->request->path());
+
+        // error handler to throw errors
+        switch ($this->payload[0]) {            
+            case FastRoute\Dispatcher::NOT_FOUND:
+                response()->json(['message'=>'404 - '.$this->statusTexts[404]],404);
+                break;
+            case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
+                response()->json(['message'=>'405 - '.$this->statusTexts[405]],405);
+                break;
+            case FastRoute\Dispatcher::FOUND:
+                $this->routehandler = $this->payload[1];
+                $this->routevars = $this->payload[2];
+                if(is_object($this->routehandler)) {
+                    call_user_func($this->routehandler, $this->routevars);
+                } else {
+                    $this->class = $this->dependency->injector->make($this->payload[1][0]);
+                    $this->method = $this->payload[1][1];
+                    $this->request->add($this->routevars);
+                    $this->class->{$this->method}($this->request,$this->response);
                 }
-            }
-        });
+                break;
+            default:
+                return response()->json(['message'=>'500 - '.$this->statusTexts[500]],500);
+                break;
+        } 
     }
 
-    private function __setResCode($rescode) {
-        $this->rescode = $rescode;
+    /**
+     * push route to routecollection array
+     */
+    private function __pushRoute($method,$route,$routecallback) {
+        $this->collection = [
+            'method'   => $method,
+            'route'    => $route,
+            'callback' => $routecallback
+        ];
+        array_push($this->routecollection,$this->collection);
     }
 
     /**
      * Render the response based on the method and args
      */
-    private function __renderResponse($method,$route,$routeFn) {
-        if(gettype($routeFn) == 'string') {
-            $this->routeFn = explode('@',$routeFn);
+    private function __renderResponse($method,$route,$routecallback) {
+        if(gettype($routecallback) == 'string') {
+            $this->routecallback = explode('@',$routecallback);
+            if(count($this->routecallback) > 1) {
+                $this->routecallback[0] = class_exists($this->routecallback[0])?$this->routecallback[0]:$this->namespace . $this->routecallback[0];
+                $this->class = $this->routecallback[0];
+                $this->method = $this->routecallback[1];
 
-            if(count($this->routeFn) > 1) {
-                $this->routeFn[0] = class_exists($this->routeFn[0])?$this->routeFn[0]:$this->namespace . $this->routeFn[0];
-                $this->class = new $this->routeFn[0];
-                $this->method = $this->routeFn[1];
                 if(method_exists($this->class,$this->method)) {
-                    $this->router->respond($method,$route, function($request,$response) {
-                        $this->__setResCode($response->code());
-                        return call_user_func_array([$this->class,$this->method],[$request,$response]);
-                    });               
+                    $this->__pushRoute($method,$route,[$this->class,$this->method]);
                 }
             }
         } else {
-            $this->router->respond($method,$route,$routeFn);
+            $this->__pushRoute($method,$route,$routecallback);
         }
+    }
+
+    /**
+     * Dispatch routes after all of them are ready
+     */
+    public function dispatchRoutes() {
+        $this->__dispatchRouter();
     }
 
     /**
      * GET routes
      */
-    protected function get($route, $routeFn) {
-        $this->__renderResponse('GET',$route,$routeFn);
+    public function get($route, $routecallback) {
+        $this->__renderResponse('GET',$route,$routecallback);
     }
 
     /**
      * POST routes
      */
-    protected function post($route, $routeFn) {
-        $this->__renderResponse('POST',$route,$routeFn);
+    public function post($route, $routecallback) {
+        $this->__renderResponse('POST',$route,$routecallback);
     }
 
     /**
      * PUT routes
      */
-    protected function put($route, $routeFn) {
-        $this->__renderResponse('PUT',$route,$routeFn);
+    public function put($route, $routecallback) {
+        $this->__renderResponse('PUT',$route,$routecallback);
     }
 
 }   
