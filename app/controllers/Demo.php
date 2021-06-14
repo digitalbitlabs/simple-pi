@@ -8,6 +8,8 @@ namespace App\Controllers;
 use SimplePi\Http\HttpRequest;
 use SimplePi\Http\HttpResponse;
 
+use SimplePi\Models\Demo;
+
 class Demo {
 
     protected $request;
