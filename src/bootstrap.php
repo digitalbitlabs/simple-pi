@@ -1,5 +1,6 @@
 <?php declare(strict_types = 1);
 
+// autoload composer dependencies
 require __DIR__ ."/../vendor/autoload.php";
 
 // register exception handler for Simple Pi
@@ -15,3 +16,5 @@ $response     = $dependencies->injector->make('SimplePi\Http\HttpResponse');
 // register router object for Simple Pi
 $router = new \SimplePi\Routing\Router($request,$response,$dependencies);
 
+// register database dependencies
+// $database = new \SimplePi\Database;

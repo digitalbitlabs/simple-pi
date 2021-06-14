@@ -4,10 +4,10 @@
  * Environment variable helper
  */
 if(!function_exists('env')) {
-    function env($var) {
+    function env($var,$default='') {
         $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
         $dotenv->load();
-        return $_ENV[$var];
+        return isset($_ENV[$var])?$_ENV[$var]:$default;
     }
 }
 /**

@@ -8,7 +8,6 @@ namespace App\Controllers;
 use SimplePi\Http\HttpRequest;
 use SimplePi\Http\HttpResponse;
 
-
 class Demo {
 
     protected $request;
@@ -18,7 +17,6 @@ class Demo {
     }
 
     public function display(HttpRequest $request) {
-        // $this->response->json(['data'=>$this->request->all()]);
         return response()->json(['data'=>$request->all()]);
     }
 
