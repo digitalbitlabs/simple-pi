@@ -8,7 +8,7 @@ namespace App\Controllers;
 use SimplePi\Http\HttpRequest;
 use SimplePi\Http\HttpResponse;
 
-use SimplePi\Models\Demo;
+use SimplePi\Framework\DB;
 
 class Demo {
 
@@ -16,6 +16,7 @@ class Demo {
     protected $response;
 
     public function __construct() {
+
     }
 
     public function display(HttpRequest $request) {
@@ -23,6 +24,8 @@ class Demo {
     }
 
     public function mySpace(HttpRequest $request) {
-        echo 'this is my space: '.$request->all()['id'];
+        $data = $request->all();
+        $data = DB::query("SELECT * FROM demo LIMIT 1")->result();
+        return response()->json(['message'=>'this is my space '.$data[0]['name']]);
     }
 }

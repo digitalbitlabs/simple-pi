@@ -36,3 +36,19 @@ if(!function_exists('response')) {
         return new \SimplePi\Http\HttpResponse;
     }
 }
+/**
+ * Configuration variables helper
+ */
+if(!function_exists('config')) {
+    function config($var) { 
+        return \SimplePi\Framework\Config::get($var);
+    }
+}
+/**
+ * Configuration variables helper
+ */
+if(!function_exists('app_path')) {
+    function app_path($var = '') { 
+        return filter_input(INPUT_SERVER,'DOCUMENT_ROOT').'/../app/'.$var;
+    }
+}

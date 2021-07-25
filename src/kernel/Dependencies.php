@@ -2,7 +2,7 @@
 /**
  * Dependency injector for the framework
  */
-namespace SimplePi;
+namespace SimplePi\Kernel;
 
 use Auryn\Injector;
 
@@ -17,6 +17,9 @@ class Dependencies {
         $this->__setupDependencies();
     }
 
+    /**
+     * setup dependencies and inject them
+     */
     private function __setupDependencies() {
         $this->injector->alias('SimplePi\Http\Request','SimplePi\Http\HttpRequest');
         $this->injector->share('SimplePi\Http\HttpRequest');

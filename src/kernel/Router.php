@@ -3,9 +3,9 @@
  * Router wrapper class
  * @author - Sanket Raut <sanket@digitalbit.in>
  */
-namespace SimplePi\Routing;
+namespace SimplePi\Kernel;
 
-use SimplePi\Dependencies;
+use SimplePi\Kernel\Dependencies;
 use SimplePi\Http\HttpResponse;
 use SimplePi\Http\HttpRequest;
 
