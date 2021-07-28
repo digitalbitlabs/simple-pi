@@ -22,7 +22,6 @@
     },
     "autoload": {
         "psr-4": {
-            "SimplePi\\": "src/",
             "App\\": "app/"
         },
         "files": [
