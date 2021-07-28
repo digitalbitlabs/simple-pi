@@ -1,6 +1,7 @@
 <?php declare(strict_types = 1);
 /**
  * Config class - Facade for configuration parameters
+ * @author: Sanket Raut
  */
 
  namespace SimplePi\Framework;

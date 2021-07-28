@@ -1,6 +1,7 @@
 <?php declare(strict_types = 1);
 /**
  * Abstract class for framework structure
+ * @author: Sanket Raut
  */
 
  namespace SimplePi\Kernel;

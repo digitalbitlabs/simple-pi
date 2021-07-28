@@ -1,6 +1,7 @@
 <?php declare(strict_types = 1);
 /**
  * Database wrapper class for PHP PDO - Facade for DB class
+ * @author: Sanket Raut
  */
 
  namespace SimplePi\Framework;
@@ -22,8 +23,7 @@
                 $db->results[] = $row;
             }
         } catch (PDOException $e) {
-            print "Error!: " . $e->getMessage() . "<br/>";
-            die();
+            abort("DB Error: " . $e->getMessage());
         }
         return $db;
     }
@@ -33,8 +33,7 @@
             $this->connection = null;
             return $this->results;    
         } catch(Exception $e) {
-            print "Error!: " . $e->getMessage() . "<br/>";
-            die();
+            abort("DB Error: " . $e->getMessage());
         } 
     }
  }

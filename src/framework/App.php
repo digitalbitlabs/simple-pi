@@ -1,6 +1,7 @@
 <?php declare(strict_types = 1);
 /**
  * App wrapper class for booting the configuration
+ * @author: Sanket Raut
  */
 
  namespace SimplePi\Framework;
@@ -18,6 +19,7 @@
      * bootstrap the application
      */
     public function boot() {
+        $this->loadRoutes();
         $this->loadConfig();
         $this->loadDB();
     }
@@ -52,6 +54,13 @@
      */
     private function loadDB() {
         return self::db();
+    }
+
+    /**
+     * load routes private method to use in boot()
+     */
+    private function loadRoutes() {
+        return require_once(app_path('/routes.php'));
     }
 
  }

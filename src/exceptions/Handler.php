@@ -1,6 +1,7 @@
 <?php declare(strict_types = 1);
 /**
  * Exception handler class
+ * @author: Sanket Raut
  */
 
 namespace SimplePi\Exceptions;

@@ -171,10 +171,12 @@ class Router {
 
                 if(method_exists($this->class,$this->method)) {
                     $this->__pushRoute($method,$route,[$this->class,$this->method]);
+                    $this->__pushRoute($method,$route.'/',[$this->class,$this->method]);
                 }
             }
         } else {
             $this->__pushRoute($method,$route,$routecallback);
+            $this->__pushRoute($method,$route.'/',$routecallback);
         }
     }
 

@@ -1,6 +1,7 @@
 <?php declare(strict_types = 1);
 /**
  * Dependency injector for the framework
+ * @author: Sanket Raut
  */
 namespace SimplePi\Kernel;
 

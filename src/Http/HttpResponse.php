@@ -1,6 +1,7 @@
 <?php declare(strict_types = 1);
 /**
  * Http Response class to handle response
+ * @author: Sanket Raut
  */
 
 namespace SimplePi\Http;

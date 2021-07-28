@@ -1,12 +1,12 @@
 <?php
 /**
  * SimplePi Framework
- * This code is derived from Laravel framework
+ * This code is derived from Laravel framework - Used to render index.php if relative path is used
  * @author   Sanket Raut @sanketraut
  */
 
 $uri = urldecode(
-    parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
+    parse_url(filter_input(INPUT_SERVER,'REQUEST_URI'), PHP_URL_PATH)
 );
 
 // This file allows us to emulate Apache's "mod_rewrite" functionality from the

@@ -1,6 +1,7 @@
 <?php
 /**
  * Demo controller for initializing the app
+ * @author: Sanket Raut
  */
 
 namespace App\Controllers;
@@ -16,16 +17,11 @@ class Demo {
     protected $response;
 
     public function __construct() {
-
+        // write your constructor call here
     }
 
     public function display(HttpRequest $request) {
-        return response()->json(['data'=>$request->all()]);
+        return response()->json(['message'=>'this is a demo app']);
     }
 
-    public function mySpace(HttpRequest $request) {
-        $data = $request->all();
-        $data = DB::query("SELECT * FROM demo LIMIT 1")->result();
-        return response()->json(['message'=>'this is my space '.$data[0]['name']]);
-    }
 }

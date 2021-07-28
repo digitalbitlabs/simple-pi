@@ -1,6 +1,7 @@
 <?php declare(strict_types = 1);
 /**
  * Route class - Facade for routes parameters
+ * @author: Sanket Raut
  */
 
  namespace SimplePi\Framework;

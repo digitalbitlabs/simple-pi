@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
+/** @author: Sanket Raut **
 
-/**
  * Environment variable helper
  */
 if(!function_exists('env')) {
@@ -45,10 +45,19 @@ if(!function_exists('config')) {
     }
 }
 /**
- * Configuration variables helper
+ * App folder path helper
  */
 if(!function_exists('app_path')) {
     function app_path($var = '') { 
         return filter_input(INPUT_SERVER,'DOCUMENT_ROOT').'/../app/'.$var;
     }
 }
+/**
+ * Abort function helper
+ */
+if(!function_exists('abort')) {
+    function abort($message = 'Something went wrong') { 
+        throw new RuntimeException($message);
+    }
+}
+
