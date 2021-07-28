@@ -1,5 +1,8 @@
-<?php 
-declare(strict_types = 1);
+<?php declare(strict_types = 1);
 
-// Bootstrap services and framework configuration
-require __DIR__ . '/../src/bootstrap.php';
+// autoload composer dependencies
+require __DIR__ ."/../vendor/autoload.php";
+
+// bootstrap services and framework configuration
+$app = new \SimplePi\Framework\App;
+$app->boot();
