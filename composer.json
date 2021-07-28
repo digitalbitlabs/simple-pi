@@ -1,5 +1,5 @@
 {
-    "name": "digitalbitlabs/simple-pi-framework",
+    "name": "digitalbitlabs/simple-pi-app",
     "description": "Simple Pi is REST API framework developed in PHP",
     "keywords": ["REST API","Simple framework", "Micro framework"],
     "type": "project",
