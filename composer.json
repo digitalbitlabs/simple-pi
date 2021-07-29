@@ -11,7 +11,7 @@
             "role": "Lead developer"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "php": ">7.0",
         "digitalbitlabs/simple-pi-framework":"~1.0"
