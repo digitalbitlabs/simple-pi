@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "05bdc2a933b8c65741b2ce6725168369",
+    "content-hash": "3b164a5666f784b02eb08585ce1b07eb",
     "packages": [
         {
             "name": "digitalbitlabs/simple-pi-framework",
-            "version": "1.0",
+            "version": "v1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/digitalbitlabs/simple-pi-framework.git",
-                "reference": "e5c056862e9c0a02563c7de8faccaf41522dfed0"
+                "reference": "c253783b0af4f6dab025876acdd1268ea24df6bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/digitalbitlabs/simple-pi-framework/zipball/e5c056862e9c0a02563c7de8faccaf41522dfed0",
-                "reference": "e5c056862e9c0a02563c7de8faccaf41522dfed0",
+                "url": "https://api.github.com/repos/digitalbitlabs/simple-pi-framework/zipball/c253783b0af4f6dab025876acdd1268ea24df6bb",
+                "reference": "c253783b0af4f6dab025876acdd1268ea24df6bb",
                 "shasum": ""
             },
             "require": {
@@ -56,9 +56,9 @@
             ],
             "support": {
                 "issues": "https://github.com/digitalbitlabs/simple-pi-framework/issues",
-                "source": "https://github.com/digitalbitlabs/simple-pi-framework/tree/1.0"
+                "source": "https://github.com/digitalbitlabs/simple-pi-framework/tree/v1.0"
             },
-            "time": "2021-07-28T15:00:43+00:00"
+            "time": "2021-07-29T07:36:43+00:00"
         },
         {
             "name": "filp/whoops",
@@ -500,16 +500,16 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v5.2.12",
+            "version": "v5.2.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "c1c2621bd5e9167aff38fec5f97a3cb568f34728"
+                "reference": "2a247de56fc8f5efdf1e098192128e8e509d370c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/c1c2621bd5e9167aff38fec5f97a3cb568f34728",
-                "reference": "c1c2621bd5e9167aff38fec5f97a3cb568f34728",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/2a247de56fc8f5efdf1e098192128e8e509d370c",
+                "reference": "2a247de56fc8f5efdf1e098192128e8e509d370c",
                 "shasum": ""
             },
             "require": {
@@ -553,7 +553,7 @@
             "description": "Defines an object-oriented layer for the HTTP specification",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/http-foundation/tree/v5.2.12"
+                "source": "https://github.com/symfony/http-foundation/tree/v5.2.14"
             },
             "funding": [
                 {
@@ -569,7 +569,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-07-23T15:54:19+00:00"
+            "time": "2021-07-29T06:18:06+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -652,16 +652,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.23.0",
+            "version": "v1.23.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "2df51500adbaebdc4c38dea4c89a2e131c45c8a1"
+                "reference": "9174a3d80210dca8daa7f31fec659150bbeabfc6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/2df51500adbaebdc4c38dea4c89a2e131c45c8a1",
-                "reference": "2df51500adbaebdc4c38dea4c89a2e131c45c8a1",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/9174a3d80210dca8daa7f31fec659150bbeabfc6",
+                "reference": "9174a3d80210dca8daa7f31fec659150bbeabfc6",
                 "shasum": ""
             },
             "require": {
@@ -712,7 +712,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.23.0"
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.23.1"
             },
             "funding": [
                 {
@@ -728,20 +728,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-27T09:27:20+00:00"
+            "time": "2021-05-27T12:26:48+00:00"
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "v1.23.0",
+            "version": "v1.23.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
-                "reference": "eca0bf41ed421bed1b57c4958bab16aa86b757d0"
+                "reference": "1100343ed1a92e3a38f9ae122fc0eb21602547be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/eca0bf41ed421bed1b57c4958bab16aa86b757d0",
-                "reference": "eca0bf41ed421bed1b57c4958bab16aa86b757d0",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/1100343ed1a92e3a38f9ae122fc0eb21602547be",
+                "reference": "1100343ed1a92e3a38f9ae122fc0eb21602547be",
                 "shasum": ""
             },
             "require": {
@@ -795,7 +795,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/v1.23.0"
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.23.1"
             },
             "funding": [
                 {
@@ -811,7 +811,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-02-19T12:13:01+00:00"
+            "time": "2021-07-28T13:41:28+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
