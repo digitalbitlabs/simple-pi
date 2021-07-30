@@ -1,3 +1,5 @@
+![logo](https://user-images.githubusercontent.com/72734777/127652035-fbd7bbad-efa5-4fc3-8118-f6995216e11f.png)
+
 # Simple Pi
 Simple Pi is a REST API micro framework developed in PHP. The sole purpose of this framework is give you ready to use simple API which allows you to have custom configuration, routes and database operations. To begin with using the framework, follow the steps given below:
 
