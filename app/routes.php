@@ -6,7 +6,7 @@
 
 use SimplePi\Framework\Routes; 
 
-// use withCors() before dispatch to enable CORS
+// use withCors() before dispatch() to enable CORS
 Routes::build(function($router) {
     $router->get('/', function() {
         return response()->json(['message'=>'Welcome to '.config('app.name')]); // render json data
