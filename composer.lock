@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "525f66b4c754f4ad3bd8b4d170f65d1d",
+    "content-hash": "945dbe08514f76f12dd1815404c447fc",
     "packages": [
         {
             "name": "digitalbitlabs/simple-pi-framework",
-            "version": "v1.0.7",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/digitalbitlabs/simple-pi-framework.git",
-                "reference": "c42d8ce21d678955249aed8e1162f78e73904db6"
+                "reference": "43c0ed64bc0503482449b7d97488ae3ccf01577f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/digitalbitlabs/simple-pi-framework/zipball/c42d8ce21d678955249aed8e1162f78e73904db6",
-                "reference": "c42d8ce21d678955249aed8e1162f78e73904db6",
+                "url": "https://api.github.com/repos/digitalbitlabs/simple-pi-framework/zipball/43c0ed64bc0503482449b7d97488ae3ccf01577f",
+                "reference": "43c0ed64bc0503482449b7d97488ae3ccf01577f",
                 "shasum": ""
             },
             "require": {
@@ -56,9 +56,9 @@
             ],
             "support": {
                 "issues": "https://github.com/digitalbitlabs/simple-pi-framework/issues",
-                "source": "https://github.com/digitalbitlabs/simple-pi-framework/tree/v1.0.7"
+                "source": "https://github.com/digitalbitlabs/simple-pi-framework/tree/v1.1.1"
             },
-            "time": "2021-10-29T04:55:33+00:00"
+            "time": "2021-12-27T14:39:05+00:00"
         },
         {
             "name": "filp/whoops",
