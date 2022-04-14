@@ -14,7 +14,7 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">7.0",
-        "digitalbitlabs/simple-pi-framework":"v1.1.*"
+        "digitalbitlabs/simple-pi-framework":"v2.*"
     },
     "autoload": {
         "psr-4": {
