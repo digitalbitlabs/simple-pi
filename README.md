@@ -7,7 +7,7 @@ Simple Pi is a REST API micro framework developed in PHP. The sole purpose of th
 ## Installation
 To install Simple Pi, you need to have composer installed. If you don't grab it from [https://getcomposer.org/download/](https://getcomposer.org/download/)
 
-`composer require digitalbitlabs/simple-pi my-app`
+`composer create-project digitalbitlabs/simple-pi my-app`
 
 This will create a directory `my-app` in your current folder with all the code necessary to run the API.
 
